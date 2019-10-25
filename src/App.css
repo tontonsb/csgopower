@@ -49,3 +49,9 @@ td {
     padding-left: 1em;
     text-align: left;
 }
+.formElem {
+    color: #fff;
+    width: 300px;
+    font-size: 2em;
+    background: purple;
+}

@@ -2,12 +2,14 @@ import React from "react";
 import Header from "./components/Header";
 import AdminButtons from "./components/AdminButtons";
 import Table from "./components/Table";
+import Form from "./components/Form";
 import "./App.css";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isHome: true,
             numOfRankers: 0,
             isAdmin: false,
             rankedTeams: [
@@ -29,6 +31,7 @@ class App extends React.Component {
         };
         this.setRankings = this.setRankings.bind(this);
         this.toggleAdmin = this.toggleAdmin.bind(this);
+        this.switchTab = this.switchTab.bind(this);
     }
     setRankings() {
         console.log("Called successfully!");
@@ -80,7 +83,7 @@ class App extends React.Component {
                 let team = rankings[i].rankings[j].toLowerCase().trim();
                 let pointsToAdd = 20 - j;
                 let index = allTeams.findIndex(obj => obj.name === team);
-                if (index == -1) {
+                if (index === -1) {
                     allTeams.push({
                         name: team,
                         points: pointsToAdd,
@@ -111,33 +114,40 @@ class App extends React.Component {
             ? this.setState({ isAdmin: false })
             : this.setState({ isAdmin: true });
     }
+    switchTab() {
+        this.state.isHome
+            ? this.setState({ isHome: false })
+            : this.setState({ isHome: true });
+    }
     render() {
-        const ColoredLine = ({ color }) => (
-            <hr
-                style={{
-                    color: color,
-                    backgroundColor: color,
-                    borderColor: color,
-                    padding: 0,
-                    width: "99vw",
-                    left: "10px",
-                    right: "10px",
-                    height: 1
-                }}
-            />
-        );
-        return (
-            <div>
-                <Header />
-                <ColoredLine color="#333" />
-                <AdminButtons sheetsuCall={this.setRankings} />
-                <Table
-                    className="rankingsTable"
-                    rankedTeams={this.state.rankedTeams}
-                    rankersCount={this.state.numOfRankers}
-                />
-            </div>
-        );
+        if (this.state.isHome) {
+            // showRankingsPage
+            return (
+                <div>
+                    <Header
+                        isHome={this.state.isHome}
+                        switch={this.switchTab}
+                    />
+                    <AdminButtons sheetsuCall={this.setRankings} />
+                    <Table
+                        className="rankingsTable"
+                        rankedTeams={this.state.rankedTeams}
+                        rankersCount={this.state.numOfRankers}
+                    />
+                </div>
+            );
+        } else {
+            // setRankingsPage
+            return (
+                <div>
+                    <Header
+                        isHome={this.state.isHome}
+                        switch={this.switchTab}
+                    />
+                    <Form />
+                </div>
+            );
+        }
     }
 }
 

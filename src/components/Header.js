@@ -1,13 +1,29 @@
 import React from "react";
 
 function Header(props) {
-    return (
-        <div className="navBar">
-            <div className="navBrand">logo, Community Power Rankings</div>
-            <a className="navLink">Community Rankings</a>
-            <a className="navLink">My Rankings</a>
-        </div>
-    );
+    if (props.isHome) {
+        return (
+            <div className="navBar">
+                <div className="title">Community Power Rankings</div>
+                <div>
+                    <button className="switchButton" onClick={props.switch}>
+                        Set my rankings
+                    </button>
+                </div>
+            </div>
+        );
+    } else {
+        return (
+            <div className="navBar">
+                <div className="title">Community Power Rankings</div>
+                <div>
+                    <button className="switchButton" onClick={props.switch}>
+                        See the rankings
+                    </button>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Header;

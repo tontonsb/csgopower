@@ -17,17 +17,21 @@ html {
     justify-content: space-between;
     align-items: center;
 }
-.navBrand {
-    font-size: 1.5em;
-    flex-grow: 2;
+.title {
+    color: white;
+    border: none;
+    background: #222;
+    font-size: 2em;
+}
+.switchButton {
+    /* color: white;
+    border: none;
+    background: #111;
+    font-size: 1.2em;
+    margin-top: 0.3em;
+    flex-grow: 1; */
 }
 
-.navLink {
-    font-size: 1.2em;
-    padding-right: 3em;
-    text-align: right;
-    flex-grow: 1;
-}
 .rankingsTable {
     width: 95%;
     background: #001f4c;

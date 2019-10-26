@@ -9,7 +9,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isHome: true,
+            isHome: false,
             numOfRankers: 0,
             isAdmin: false,
             rankedTeams: [
@@ -37,28 +37,28 @@ class App extends React.Component {
         console.log("Called successfully!");
         let response = [
             {
-                "Ranker": "HTLV",
-                "Country": "Denmark",
-                "#1": "Astralis",
-                "#2": "Liquid",
-                "#3": "Evil Geniuses",
-                "#4": "Fnatic",
-                "#5": "Vitality",
-                "#6": "Avangar",
-                "#7": "Mousesports",
-                "#8": "Renegades",
-                "#9": "Natus Vincere",
-                "#10": "Ence",
-                "#11": "NiP",
-                "#12": "Furia",
-                "#13": "G2",
-                "#14": "Mibr",
-                "#15": "Forze",
-                "#16": "Cr4zy",
-                "#17": "Grayhound",
-                "#18": "Heroic",
-                "#19": "Tricked",
-                "#20": "North"
+                Ranker: "HTLV",
+                Country: "Denmark",
+                1: "Astralis",
+                2: "Liquid",
+                3: "Evil Geniuses",
+                4: "Fnatic",
+                5: "Vitality",
+                6: "Avangar",
+                7: "Mousesports",
+                8: "Renegades",
+                9: "Natus Vincere",
+                10: "Ence",
+                11: "NiP",
+                12: "Furia",
+                13: "G2",
+                14: "Mibr",
+                15: "Forze",
+                16: "Cr4zy",
+                17: "Grayhound",
+                18: "Heroic",
+                19: "Tricked",
+                20: "North"
             }
         ];
         let rankings = [];
@@ -71,8 +71,7 @@ class App extends React.Component {
                 rankings: []
             };
             for (let j = 1; j < 21; j++) {
-                let rank = "#" + j;
-                let team = response[i][rank];
+                let team = response[i][j];
                 individualRanking.rankings.push(team);
             }
 

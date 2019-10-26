@@ -1,17 +1,36 @@
 import React from "react";
-import Dragula from "react-dragula";
+import dragula from "react-dragula";
 
 class Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isFirstAttempt: true,
-            teams: [
-                { name: "Astralis", rank: 1 },
-                { name: "Liquid", rank: 2 },
-                { name: "EG", rank: 3 }
+            unrankedTeams: [
+                "Astralis",
+                "Liquid",
+                "Evil Geniuses",
+                "fnatic",
+                "Vitality",
+                "Avangar",
+                "Mousesports",
+                "Rengades",
+                "Natus Vincere",
+                "ENCE",
+                "NIP",
+                "Complexity",
+                "Furia",
+                "G2",
+                "forZe",
+                "Cr4zy",
+                "MIBR",
+                "North",
+                "Heroic",
+                "FaZe"
             ]
         };
+        this.test = this.test.bind(this);
+        this.completeRankings = this.completeRankings.bind(this);
     }
     completeRankings() {
         if (this.state.isFirstAttempt) {
@@ -21,27 +40,44 @@ class Form extends React.Component {
             // submit to something
         }
     }
+    test() {
+        let rankedTeamsArray = document
+            .getElementById("rightTeams")
+            .innerText.split("\n");
+        // ["Team1", "Team2", "Team3"...]
+        let submission = {
+            Ranker: "User",
+            Country: "Country"
+        };
+        for (let i = 0; i < rankedTeamsArray.length; i++) {
+            let rank = i + 1;
+            submission[rank] = rankedTeamsArray[i];
+        }
+        console.log(submission);
+    }
+
     render() {
-        const listTeams = this.state.teams.map(team => (
-            <div className="formElem" key={team.name}>
-                {team.name}
+        const listTeams = this.state.unrankedTeams.map(team => (
+            <div id={team} className="formElem" key={team}>
+                {team}
             </div>
         ));
         return (
             <div>
-                <div className="teamForm" ref={this.dragulaDecorator}>
-                    {listTeams}
+                <div id="formBoxes">
+                    <div id="leftTeams">{listTeams}</div>
+                    <div id="rightTeams"></div>
                 </div>
-                <button>submit</button>
+                <button onClick={this.test}>submit</button>
             </div>
         );
     }
-    dragulaDecorator = componentBackingInstance => {
-        if (componentBackingInstance) {
-            let options = {};
-            Dragula([componentBackingInstance], options);
-        }
-    };
+    componentDidMount() {
+        dragula([
+            document.getElementById("leftTeams"),
+            document.getElementById("rightTeams")
+        ]);
+    }
 }
 
 export default Form;

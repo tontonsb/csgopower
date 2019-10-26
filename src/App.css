@@ -49,9 +49,26 @@ td {
     padding-left: 1em;
     text-align: left;
 }
+#formBoxes {
+    display: flex;
+    flex-direction: row;
+}
+#leftTeams {
+    background: #111;
+    width: 40vw;
+    height: 80vh;
+    overflow: scroll;
+}
+#rightTeams {
+    background: #333;
+    width: 40vw;
+    height: 80vh;
+}
 .formElem {
+    text-align: center;
+    margin: 0.7vw 2.5vw;
     color: #fff;
-    width: 300px;
-    font-size: 2em;
+    width: 35vw;
+    font-size: 1.5em;
     background: purple;
 }

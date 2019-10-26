@@ -42,9 +42,8 @@ class Form extends React.Component {
     }
     test() {
         let rankedTeamsArray = document
-            .getElementById("rightTeams")
+            .getElementById("dropTarget")
             .innerText.split("\n");
-        // ["Team1", "Team2", "Team3"...]
         let submission = {
             Ranker: "User",
             Country: "Country"
@@ -64,19 +63,25 @@ class Form extends React.Component {
         ));
         return (
             <div>
-                <div id="formBoxes">
-                    <div id="leftTeams">{listTeams}</div>
-                    <div id="rightTeams"></div>
+                <div id="container">
+                    <div id="dragElements">{listTeams}</div>
+                    <div id="dropTarget"></div>
                 </div>
                 <button onClick={this.test}>submit</button>
             </div>
         );
     }
     componentDidMount() {
-        dragula([
-            document.getElementById("leftTeams"),
-            document.getElementById("rightTeams")
-        ]);
+        dragula(
+            [
+                document.getElementById("dragElements"),
+                document.getElementById("dropTarget")
+            ],
+            {
+                revertOnSpill: true,
+                mirrorContainer: document.body
+            }
+        );
     }
 }
 

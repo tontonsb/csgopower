@@ -49,17 +49,17 @@ td {
     padding-left: 1em;
     text-align: left;
 }
-#formBoxes {
+#container {
     display: flex;
     flex-direction: row;
 }
-#leftTeams {
+#dragElements {
     background: #111;
     width: 40vw;
     height: 80vh;
     overflow: scroll;
 }
-#rightTeams {
+#dropTarget {
     background: #333;
     width: 40vw;
     height: 80vh;
@@ -71,4 +71,27 @@ td {
     width: 35vw;
     font-size: 1.5em;
     background: purple;
+}
+
+.gu-mirror {
+    position: fixed !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+}
+.gu-hide {
+    display: none !important;
+}
+.gu-unselectable {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+.gu-transit {
+    opacity: 0.2;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
 }
